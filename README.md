@@ -1,4 +1,4 @@
-                  ---------- ☁️ CloudLock ----------
+                        ---------- ☁️ CloudLock ----------
 
 At UC Berkeley, there are over 1,650 startups, and over 1,800 founders. From BioLabs, Free Ventures, to Skydeck, there are countless startups reaching for the stars. But while large enterprises can afford premium composit suites, many of the smaller teams in these accelerators lack visibility into how their cloud data is stored. In order to present something with practical revelance in the environment, we built CloudLock --- startups deserve a simple and transparent way to understand their cloud security posture.
 
@@ -15,7 +15,7 @@ But with tight budgets, companies cannot always log every S3 Bucket available in
 Therefore, we provided a valuation metric that quantifies risk. Given the tags of SOC3 buckets, the auditor can use this risk valuation to provide a recommendation on whether these buckets should be logged or not by comparing the information of the bucket relatively to its encryption level.
 We have also implemented the first phase for our web-scraping ideas for the auditor that automatically web-scrapes for potential data leaks throughout GitHub and Reddit, cross-referencing bucket names and metadata to flag external sources.
 
-                            📝 How We Built It
+                                 📝 How We Built It
 
 Auditing Core
 
@@ -40,7 +40,7 @@ Backend API
 - Threaded Execeution to audit multiple buckets concurrently
 - CSV report generator
 
-                       ✈️ What's next for CloudLock?
+                            ✈️ What's next for CloudLock?
 
 We want to:
 
@@ -54,7 +54,7 @@ Rather than only being focused on security and compliance, we plan to add an LLM
 
 Create a data-driven inference engine for our Risk-Scoring logic.
 
-                   📋 - Evaluator’s Guide to CloudLock
+                         📋 - Evaluator’s Guide to CloudLock
 
 CloudLock isn’t just an audit tool — it’s an educational platform that bridges the gap between cloud infrastructure and cyber awareness.
 We aim to expose ourselves to the same technologies driving modern startups — AWS, APIs, and intelligent risk modeling — while contributing meaningfully to cloud computing security.
@@ -73,4 +73,5 @@ We aim to expose ourselves to the same technologies driving modern startups — 
 
 Not all startups can afford top-tier security suites --- but that doesn’t mean they should be left exposed.
 CloudLock turns auditing into insight, allowing teams to understand, measure, and improve their data security posture one bucket at a time.
+
 
