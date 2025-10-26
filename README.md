@@ -1,71 +1,75 @@
-☁️ CloudLock — Automated AWS S3 Auditing Service
+                  ---------- ☁️ CloudLock ----------
 
-CloudLock is a full-stack web application that automates SOC 2, ISO 27001, and HIPAA-style compliance checks across AWS S3 buckets.
-It connects securely to your AWS account (via IAM Role ARN or JSON uploads), runs detailed policy + ACL audits, and exports a clean CSV report identifying security misconfigurations, public access, missing encryption, and more — all within seconds.
+At UC Berkeley, there are over 1,650 startups, and over 1,800 founders. From BioLabs, Free Ventures, to Skydeck, there are countless startups reaching for the stars. But while large enterprises can afford premium composit suites, many of the smaller teams in these accelerators lack visibility into how their cloud data is stored. In order to present something with practical revelance in the environment, we built CloudLock --- startups deserve a simple and transparent way to understand their cloud security posture.
 
-⚙️ Live Demo: Upload your JSON or connect your AWS account → Front-End Dashboard (index.html)
+                What is it? And why is it different?
 
-🎥 Features a glowing particle banner, animated video background, and interactive upload UI built with Flask + HTML/CSS + JS.
+CloudLock is an automatic auditing system designed for security and checking compliance regulations in accordance with the Logical and Physical Access Controls (CC6.1) from SOC2 compliance. It maintains an IAM role that can be connected to a user's AWS account and checks without bypassing privacy SOC2 regulations.
+These regulations include:
+- Encryption
+- Access Control
+- Logging Configuration
+- Versioning
 
-🔍 FEATURES
-Automated S3 Auditing
+But with tight budgets, companies cannot always log every S3 Bucket available in their AWS storage, nor can they ensure that all data is protected by the highest encryption levels provided by AWS.
+Therefore, we provided a valuation metric that quantifies risk. Given the tags of SOC3 buckets, the auditor can use this risk valuation to provide a recommendation on whether these buckets should be logged or not by comparing the information of the bucket relatively to its encryption level.
+We have also implemented the first phase for our web-scraping ideas for the auditor that automatically web-scrapes for potential data leaks throughout GitHub and Reddit, cross-referencing bucket names and metadata to flag external sources.
 
-Detects publicly accessible buckets via get_bucket_acl
+                      📝 How We Built It
 
-Checks encryption status, versioning, and logging configuration
+Auditing Core
 
-Flags MFA Delete, cross-account access, and missing lifecycle policies
+boto3 - AWS SDK for listing buckets, fetching ACLs, and checking logging/encryption status
+botocore.exceptions - for error handling and cross-account sharing
+CSV - Data export that is readable and ready-to-go / also provides info on what needs to be changed
 
-Data Export
+Risk Quantification
 
-Generates downloadable .csv audit reports like:
-soc2_s3_audit_report_<timestamp>.csv
+Python (pandas, re) – Cleans and analyzes metadata, tags, and naming conventions
+Sensitivity Scoring – Computes a normalized metric (0–1) based on inferred data importance
+Risk Inference – Balances encryption strength vs. content sensitivity to identify high-risk zones
 
-Summary metrics: Total Buckets | Compliant | Non-Compliant | High-Risk Findings
+Leak Detection
 
-Web Leak Detection (Optional)
+BeautifulSoup - webscraping library
+lxml - text parser
 
-Integrates a web scraper that scans for leaked bucket names or AWS keys across public domains (via WebLeakDetector).
+Backend API
 
-Real-Time Dashboard
+Flask + CORS - Provided REST endpoints for uploading JSON configurations or connecting AWS credentials
+Threaded Execeution to audit multiple buckets concurrently
+CSV report generator
 
-Modern front-end (see index.html and atom-one-dark.min.css)
+                 ✈️ What's next for CloudLock?
 
-Step-by-step upload UI:
+We want to:
 
-Upload your JSON/CSV file
+Further our WebScraping initiative --- In addition to flagging websites, forums, and threads of potential data leakages, it also could automatically update the owners of the bucket storages through Slack or email. Rather than being limited to only GitHub or certain Reddit threats, it can also find websites that could lead to potential breaches in priavcy, such as TruthFinder, etc.
 
-Wait for analysis
+We want to add a web-based dashboard either by integrating Reflex or Next.js to create a more visually appealing and interactive way to see how your data storage aligns with SOC 2 regulations.
 
-View compliance results
+We want to expand past SOC2 regulations and include compliance laws from ISO 27001 (international data movement regulation), HIPAA Compliance (for healthcare startups).
 
-Download the report
+Rather than only being focused on security and compliance, we plan to add an LLM-Powered Audit Assistant for financial audits as well, providing and interpreting audit reports, similar to Propaya or LLM summarizing softwares. 
 
-Optionally connect your AWS account via the “🔗 Connect AWS Account” button.
+Create a data-driven inference engine for our Risk-Scoring logic.
 
-🧠 HOW IT WORKS
+             📋 - Evaluator’s Guide to CloudLock
 
-Frontend Upload
+CloudLock isn’t just an audit tool — it’s an educational platform that bridges the gap between cloud infrastructure and cyber awareness.
+We aim to expose ourselves to the same technologies driving modern startups — AWS, APIs, and intelligent risk modeling — while contributing meaningfully to cloud computing security.
 
-Users upload a JSON file (from AWS CLI or exported list) or click Connect AWS Account.
+Sponsor/Technology Stack
 
-Flask Backend
+AWS S3 – Core auditing target
 
-Receives the file through /upload
+Flask – Backend API and file export layer
 
-Uses Boto3 to run ACL, encryption, logging, and versioning checks
+Together.ai – (future) integration for intelligent log analysis
 
-Audit Logic
+Reflex – Planned front-end integration platform
 
-Each bucket is evaluated for compliance risk
+Intel Developer Cloud – Accelerated parallel scans for massive datasets
 
-Metrics are stored in memory and written to CSV
-
-Export & Visualization
-
-CSV report saved under /reports
-
-Results displayed in the UI via AJAX
-
-BY ME AND RICK YANG!!
-
+Not all startups can afford top-tier security suites --- but that doesn’t mean they should be left exposed.
+CloudLock turns auditing into insight, allowing teams to understand, measure, and improve their data security posture one bucket at a time.
