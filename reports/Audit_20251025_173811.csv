@@ -1,0 +1,16 @@
+﻿BucketName,Encryption,Versioning,Logging,ACL,Public Access
+soc3-demo-encrypted-1761365957,Disabled Disabled,Enabled Enabled,Enabled Enabled,Private,Disabled
+soc3-demo-encrypted-1761372373,Disabled Disabled,Disabled Disabled,Disabled Disabled,Private,Disabled
+soc3-demo-encrypted-4785297636,Disabled Disabled,Enabled Enabled,Disabled Disabled,Private,Disabled
+soc3-demo-encrypted-5661258765,Disabled Disabled,Enabled Enabled,Disabled Disabled,Private,Disabled
+soc3-demo-encrypted-7661424525,Disabled Disabled,Enabled Enabled,Disabled Disabled,Private,Disabled
+soc3-demo-logging-1761365957,Disabled Disabled,Disabled Disabled,Disabled Disabled,Private,Disabled
+soc3-demo-logging-1761372373,Disabled Disabled,Disabled Disabled,Disabled Disabled,Private,Disabled
+soc3-demo-logging-4785297636,Disabled Disabled,Disabled Disabled,Disabled Disabled,Private,Disabled
+soc3-demo-logging-5661258765,Disabled Disabled,Disabled Disabled,Disabled Disabled,Private,Disabled
+soc3-demo-logging-7661424525,Disabled Disabled,Disabled Disabled,Disabled Disabled,Private,Disabled
+soc3-demo-unencrypted-1761365957,Disabled Disabled,Disabled Disabled,Enabled Enabled,Private,Disabled
+soc3-demo-unencrypted-1761372373,Disabled Disabled,Disabled Disabled,Enabled Enabled,Private,Disabled
+soc3-demo-unencrypted-4785297636,Disabled Disabled,Disabled Disabled,Enabled Enabled,Private,Disabled
+soc3-demo-unencrypted-5661258765,Disabled Disabled,Disabled Disabled,Enabled Enabled,Private,Disabled
+soc3-demo-unencrypted-7661424525,Disabled Disabled,Disabled Disabled,Enabled Enabled,Private,Disabled

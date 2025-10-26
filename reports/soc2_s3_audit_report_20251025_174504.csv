@@ -1,0 +1,18 @@
+,SOC 2 S3 Bucket Audit Report,,,,
+
+Date:,,2025-10-25,,,
+Auditor:,,AUDITOR v.1.0,,,
+AWS Account ID:,,647743454463,,,
+Region:,,us-west-2,,,
+
+BucketName,Encryption,Versioning,Logging,ACL,Public Access,Sensitivity,External Leaks,Leak Severity
+soc3-demo-encrypted-7661424525,Enabled,Enabled,Disabled,Private,No,5,None,SAFE
+soc3-demo-unencrypted-7661424525,Enabled,Disabled,Enabled,Private,No,1,None,SAFE
+soc3-demo-logging-7661424525,Enabled,Disabled,Disabled,Private,No,1,None,SAFE
+
+Metric,Count
+Total Buckets,3
+Passed Buckets,3
+Failed Buckets,0
+Public Buckets,0
+Unencrypted Buckets,0

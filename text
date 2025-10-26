@@ -1,0 +1,141 @@
+ **** for audit_all_buckets()
+    Example output:
+        [
+            {'Bucket_Name': 'my-bucket-1', 'ACL_Status': 'Private', 'Sensitivity' : 9},
+            {'Bucket_Name': 'public-site', 'ACL_Status': 'Public'},
+            {'Bucket_Name': 'secure-data', 'ACL_Status': 'Private'}
+        ]
+
+**** in check_bucket()
+ Example of what acl_response looks like:
+        # {
+        #   'Owner': {'ID': 'abc123...'},
+        #   'Grants': [
+        #     {
+        #       'Grantee': {
+        #         'Type': 'Group',
+        #         'URI': 'http://acs.amazonaws.com/groups/global/AllUsers'
+        #       },
+        #       'Permission': 'READ'
+        #     }
+        #   ]
+        # }
+
+
+
+
+
+<style>
+  .results-section {
+    margin-top: 40px;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 16px;
+    display: none; /* Hidden by default */
+  }
+  
+  .results-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+  }
+  
+  .results-table th,
+  .results-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .results-table th {
+    background-color: #0078ff;
+    color: white;
+    font-weight: 600;
+  }
+  
+  .download-btn {
+    margin-top: 20px;
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  
+  .download-btn:hover {
+    background: linear-gradient(135deg, #218838, #1aa179);
+  }
+</style>
+
+<!-- Replace the upload section script -->
+<script>
+  const uploadBtn = document.getElementById("upload-btn");
+  const fileInput = document.getElementById("file-input");
+  const status = document.getElementById("upload-status");
+  const spinner = document.getElementById("spinner");
+
+  uploadBtn.addEventListener("click", async () => {
+    if (!fileInput.files.length) {
+      status.innerText = "⚠️ Please select a file first.";
+      return;
+    }
+
+    const file = fileInput.files[0];
+    const formData = new FormData();
+    formData.append("file", file);
+
+    status.innerText = "Uploading and analyzing...";
+    spinner.style.display = "block";
+
+    try {
+      const response = await fetch("http://127.0.0.1:5000/upload", {
+        method: "POST",
+        body: formData,
+      });
+
+      const result = await response.json();
+      
+      if (response.ok) {
+        status.innerHTML = `✅ Audit complete!<br>
+          <strong>Total Buckets:</strong> ${result.total_buckets}<br>
+          <strong>Compliant:</strong> ${result.compliant}<br>
+          <strong>Report:</strong> ${result.filename}`;
+        
+        // Show download button
+        const downloadSection = document.createElement('div');
+        downloadSection.innerHTML = `
+          <button class="download-btn" onclick="downloadReport('${result.filename}')">
+            📥 Download CSV Report
+          </button>
+        `;
+        status.appendChild(downloadSection);
+        
+      } else {
+        status.innerText = `❌ Error: ${result.error}`;
+      }
+    } catch (error) {
+      console.error(error);
+      status.innerText = "❌ Upload failed. Check backend logs.";
+    } finally {
+      spinner.style.display = "none";
+    }
+  });
+
+  function downloadReport(filename) {
+    window.location.href = `http://127.0.0.1:5000/download/${filename}`;
+  }
+</script>
+```
+
+## 4. Project Structure
+
+Your project should look like this:
+```
+project/
+├── app.py                 # Flask backend (NEW)
+├── acl_logic.py          # Your existing audit logic
+├── create_demo_bucket.py # Your existing demo script
+├── index.html            # Your existing frontend (with updates)
+└── requirements.txt      # Dependencies

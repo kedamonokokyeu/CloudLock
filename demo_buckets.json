@@ -1,0 +1,18 @@
+{
+  "Buckets": [
+    {
+      "Name": "soc3-demo-encrypted-7661424525",
+      "CreationDate": "2025-10-25T14:16:55"
+    },
+    {
+      "Name": "soc3-demo-unencrypted-7661424525",
+      "CreationDate": "2025-10-25T14:16:55"
+    },
+    {
+      "Name": "soc3-demo-logging-7661424525",
+      "CreationDate": "2025-10-25T14:16:55"
+    }
+  ],
+  "Region": "us-west-2",
+  "AccountId": "647743454463"
+}
